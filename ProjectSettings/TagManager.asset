@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - Enemies
+  - Projectile
+  - Waypoint
+  - Inimigos
+  - "Proj\xE9til"
   layers:
   - Default
   - TransparentFX
