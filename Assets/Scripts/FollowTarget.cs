@@ -25,24 +25,25 @@ public class FollowTarget : MonoBehaviour
 
     private void Update()
     {
-        SearchTarget();
-        Move();
-        Rotate();
+        SearchTarget();             // funcao responsavel por encontrar o target a ser seguido
+        Move();                     // funcao responsavel pela movimentacao do objeto que seguira o target
+        Rotate();                   // funcao responsavel pela rotacao do objeto que seguira o target
     }
 
     private void SearchTarget()
     {
-        // validacao se ja nao tem um alvo definido e se há uma tag definida
+        // validacao se ja nao tem um alvo definido e se ha uma tag definida
         if (targetTag == "" || (!searchProximity && target != null))
         {
             // encerrando o metodo
             return;
         }
 
-        // logica de procurar o target
+        // logica de procurar o target atraves de tag
         GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTag);
         Transform possibleTarget = null;
 
+        // criacao de um loop para fazer a verificacao do Array
         foreach (GameObject checkTarget in targets)
         {
             float checkDist = Vector3.Distance(checkTarget.transform.position, transform.position);
@@ -52,6 +53,7 @@ public class FollowTarget : MonoBehaviour
                 possibleTarget = checkTarget.transform;
             }
         }
+        // se for colocado o objeto dentro da variavel publica target
         if (possibleTarget != null)
         {
             target = possibleTarget;
