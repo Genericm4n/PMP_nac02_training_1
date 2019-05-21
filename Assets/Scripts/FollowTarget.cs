@@ -3,28 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowTarget : MonoBehaviour {
-
+public class FollowTarget : MonoBehaviour
+{
     #region Variables
+
     [Header("Target")]
-    public Transform target;
-    public string targetTag;
-    public bool searchProximity;
+    public Transform target;        // target baseado em algum objeto na cena
+
+    public string targetTag;        // string que recebe uma tag
+    public bool searchProximity;    // permite que o target mais proximo seja seguido
 
     [Header("Moviment")]
-    public float velMove = 3.0f;
+    public float velMove = 3.0f;    // velocidade de movimentacao do objeto que seguira o target
 
     [Header("Rotation")]
-    public float velRot = 3.0f;
-    public bool lookAt = false;
-    #endregion
-	
-	private void Update ()
+    public float velRot = 3.0f;     // velocidade de rotacao do objeto que seguira o target
+
+    public bool lookAt = false;     // faz o objeto rotacionar no sentido do target
+
+    #endregion Variables
+
+    private void Update()
     {
         SearchTarget();
         Move();
         Rotate();
-	}
+    }
 
     private void SearchTarget()
     {

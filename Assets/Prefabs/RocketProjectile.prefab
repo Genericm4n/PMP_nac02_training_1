@@ -248,7 +248,7 @@ MonoBehaviour:
   searchProximity: 0
   velMove: 4
   velRot: 4
-  lookAt: 0
+  lookAt: 1
 --- !u!136 &136880129074554588
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -256,7 +256,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973614063107846}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

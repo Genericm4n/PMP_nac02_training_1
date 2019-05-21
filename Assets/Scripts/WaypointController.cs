@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq;      // biblioteca com Array, permitindo filtrar, pesquisar e classificar os objetos contidos dentro dela
 using UnityEngine;
 
-public class WaypointController : MonoBehaviour {
-
+public class WaypointController : MonoBehaviour
+{
     #region Variables
+
     [Header("Waypoints")]
     [Tooltip("Lista of all Waypoints")]
-
     private WaypointController[] waypoints;     // array com os Waypoints presentes na cena, deteccao dos Scripts
+
     private int indexActual = -1;               // index atual corresponde a identidade do Waypoint selecionado
 
     internal WaypointController waypointA;      // waypoint anterior ao atual
     internal WaypointController waypointP;      // waypoint posterior ao atual
-    #endregion
-    private void Start ()
+
+    #endregion Variables
+
+    private void Start()
     {
         // funcao que carrega outras funcoes que serao responsaveis por identificar o waypoint anterior e posterior
         LoadWaypointSystem();
-	}
+    }
 
     private void LoadWaypointSystem()
     {
@@ -36,7 +39,7 @@ public class WaypointController : MonoBehaviour {
 
     private int GetIdWaypoint(string name)
     {
-        name = name.Replace("waypoint (", "");     
+        name = name.Replace("waypoint (", "");
         name = name.Replace(")", "");
 
         int id = -1;
@@ -53,12 +56,15 @@ public class WaypointController : MonoBehaviour {
         return id;
     }
 
+    // funcao que necessida da biblioteca Linq
     private void FreshWaypoints()
     {
         // componente que encontrara os objectos com o "WaypointController" associado na cena
         waypoints = FindObjectsOfType<WaypointController>();
         // organizar em order crescente os waypoints dentro do Array
         waypoints = waypoints.OrderBy(object0 => GetIdWaypoint(object0.name)).ToArray();
+
+        //object0 = referencia de um waypoint no array, "=>" operador lambda, object0 esta tendo sua posicao determida apos ordenada assim como os outros waypoints
     }
 
     private void LinkWaypoint()
@@ -67,7 +73,7 @@ public class WaypointController : MonoBehaviour {
         int indexP = indexActual + 1;       // propriedade do waypoint posterior
 
         // funcoes para a definicao do waypoint anterior e posterior, e seus index
-        DefineWaypoint(ref waypointA, indexA);      
+        DefineWaypoint(ref waypointA, indexA);
         DefineWaypoint(ref waypointP, indexP);
     }
 
